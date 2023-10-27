@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "",
-    database: "nibm",
+    database: "signature_cuisine",
 });
 
 connection.connect((err) => {
@@ -26,7 +26,7 @@ class DbService {
     async getAllData() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM student;";
+                const query = "SELECT * FROM customer;";
 
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
