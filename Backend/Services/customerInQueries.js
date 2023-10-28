@@ -25,21 +25,23 @@ class CustomerInqueries{
         }
     }
 
-    async insertNewQuery(name) {
+    async insertNewQuery(cusID,type,inquiry,status) {
         try {
-            const dateAdded = new Date();
+           
             const insertId = await new Promise((resolve, reject) => {
-                const query = "";
+                const query = "insert into customer_inquiries (cusID,type,inquiry,status) values (?,?,?,?)";
 
-                connection.query(query, [name, dateAdded] , (err, result) => {
+                connection.query(query, [cusID,type,inquiry,status] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.insertId);
                 })
             });
             return {
-                id : insertId,
-                name : name,
-                dateAdded : dateAdded
+                ID : insertId,
+                cusID : cusID,
+                type : type,
+                inquiry : inquiry,
+                status : status
             };
         } catch (error) {
             console.log(error);
@@ -48,3 +50,5 @@ class CustomerInqueries{
 
     
 }
+
+module.exports = CustomerInqueries;
