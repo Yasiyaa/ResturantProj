@@ -24,32 +24,61 @@ class tableReservation {
   }
 
   // create reservation
-  async insertNewReservation(cusid, tableno, date, time, noOfPeople) {
+  async insertNewReservation(name, date, time, noOfPeople, email) {
     try {
-      const insertId = await new Promise((resolve, reject) => {
+      //validate booking tables with available tables and seating capacity
+      let  availability = await new Promise((resolve, reject) => {
         const query =
-          "insert into table_reservation (cusID,tableNo,date,time,no_of_people) values (?,?,?,?,?);";
+          "SELECT * FROM `table_detail` where seatingCapacity = ? AND booked = false LIMIT 1;";
 
-        connection.query(
-          query,
-          [cusid, tableno, date, time, noOfPeople],
-          (err, result) => {
+        connection.query(query, [noOfPeople], (err, results) => {
+          if (err) reject(new Error(err.message));
+          resolve(results);
+        });
+      });
+
+      availability = availability[0];
+
+      if (availability.tableNo) {
+        // insert reservation
+        const insertId = await new Promise((resolve, reject) => {
+          const query =
+            "INSERT INTO `table_reservation`(`name`, `date`, `time`, `no_of_people`, `email`) VALUES (?,?,?,?,?);";
+
+          connection.query(
+            query,
+            [name, date, time, noOfPeople, email],
+            (err, result) => {
+              if (err) {
+                reject(new Error(err.message));
+              } else {
+                resolve(result.insertId);
+              }
+            }
+          );
+        });
+
+        // book the table
+        const tableId = await new Promise((resolve, reject) => {
+          const query =
+            "UPDATE `table_detail` SET `booked` = 1 WHERE tableID = ?;";
+
+          connection.query(query, [availability.tableID], (err, result) => {
             if (err) {
               reject(new Error(err.message));
             } else {
               resolve(result.insertId);
             }
-          }
-        );
-      });
+          });
+        });
+      }
+
+      let tableNo = availability.tableNo;
 
       return {
-        reservationId: insertId,
-        cusid,
-        tableno,
-        date,
-        time,
-        noOfPeople,
+        tableNo,
+        email,
+        name,
       };
     } catch (error) {
       console.log(error);

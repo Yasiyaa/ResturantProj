@@ -12,14 +12,14 @@ router
   })
 
   .post(function (req, res) {
-    const { cusid, tableno, date, time, noOfPeople } = req.body;
+    const { name, date, time, noOfPeople, email } = req.body;
     const TRservice = tableReservationService.getTableReservationInstance();
     const result = TRservice.insertNewReservation(
-      cusid,
-      tableno,
+      name,
       date,
       time,
-      noOfPeople
+      noOfPeople,
+      email
     );
 
     result
