@@ -1,25 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const CIService = require("../Services/customerInQueryService");
+const paymentService = require("../Services/paymentService");
 
 router
-  .route("/inquiry")
+  .route("/payment")
 
-  // Get all  inquiry
+  // Get all payments
   .get(function (req, res) {
-    const inquiryService = CIService.getCustomerInqueriesInstance();
-    const result = inquiryService.getAllData();
+    const payService = paymentService.getPaymentInstance();
+    const result = payService.getAllData();
     result.then((data) => res.send(data)).catch((err) => console.log(err));
 
     // res.send(data);
   })
 
-  // Create new inquiry
+  // add new payment
   .post(function (req, res) {
-    const { cusid, type, inquiry, status } = req.body;
-    const inquiryService = CIService.getCustomerInqueriesInstance();
+    const { cusid, oid, amount, date } = req.body;
+    const payService = paymentService.getPaymentInstance();
 
-    const result = inquiryService.insertNewQuery(cusid, type, inquiry, status);
+    const result = payService.insertNewPayment(cusid, oid, amount, date);
 
     result
       .then((data) => res.json({ data: data }))

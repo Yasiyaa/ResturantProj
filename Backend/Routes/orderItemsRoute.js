@@ -1,25 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const CIService = require("../Services/customerInQueryService");
+const orderItemsService = require("../Services/orderItemsService");
 
 router
-  .route("/inquiry")
+  .route("/order-items")
 
-  // Get all  inquiry
+  // Get all customer
   .get(function (req, res) {
-    const inquiryService = CIService.getCustomerInqueriesInstance();
-    const result = inquiryService.getAllData();
+    const OIemsService = orderItemsService.getOrderItemsInstance();
+    const result = OIemsService.getAllData();
     result.then((data) => res.send(data)).catch((err) => console.log(err));
 
     // res.send(data);
   })
 
-  // Create new inquiry
+  // add new order item
   .post(function (req, res) {
-    const { cusid, type, inquiry, status } = req.body;
-    const inquiryService = CIService.getCustomerInqueriesInstance();
+    const { oid, mid, qty } = req.body;
+    const OIemsService = orderItemsService.getOrderItemsInstance();
 
-    const result = inquiryService.insertNewQuery(cusid, type, inquiry, status);
+    const result = OIemsService.insertNewOrderItems(oid, mid, qty);
 
     result
       .then((data) => res.json({ data: data }))
@@ -31,4 +31,5 @@ router
       });
   });
 
-module.exports = router;
+
+  module.exports = router;

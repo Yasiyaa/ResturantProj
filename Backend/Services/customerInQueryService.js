@@ -4,14 +4,14 @@ let instance = null;
 class CustomerInqueries{
 
     static getCustomerInqueriesInstance() {
-        return instance ? instance : new CustomerInquries();
+        return instance ? instance : new CustomerInqueries();
     }
 
     
     async getAllData() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM customer_inquiries;";
+                const query = "SELECT * FROM customer_inquiries";
 
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -25,20 +25,20 @@ class CustomerInqueries{
         }
     }
 
-    async insertNewQuery(cusID,type,inquiry,status) {
+    async insertNewQuery(cusid, type, inquiry, status) {
         try {
            
             const insertId = await new Promise((resolve, reject) => {
                 const query = "insert into customer_inquiries (cusID,type,inquiry,status) values (?,?,?,?)";
 
-                connection.query(query, [cusID,type,inquiry,status] , (err, result) => {
+                connection.query(query, [cusid,type,inquiry,status] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.insertId);
                 })
             });
             return {
                 ID : insertId,
-                cusID : cusID,
+                cusID : cusid,
                 type : type,
                 inquiry : inquiry,
                 status : status

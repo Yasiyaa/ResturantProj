@@ -48,19 +48,18 @@ router.route("/customer/authenticate").post(function (req, res) {
 });
 
 // Customer delete
-router.route("/customer/:id").delete(function(req,res){
-    const { id } = req.params;
+router.route("/customer/:id").delete(function (req, res) {
+  const { id } = req.params;
   const cService = customerService.getCustomerInstance();
 
   const result = cService.deleteCustomerById(id);
 
   result
     .then((data) => {
-        res.send(data)
-       
+      res.send(data);
     })
 
     .catch((err) => console.log(err));
-})
+});
 
 module.exports = router;
