@@ -13,6 +13,7 @@ const order = require("./Routes/orderRoute");
 const orderItem = require("./Routes/orderItemsRoute");
 const menu = require("./Routes/menuRoute");
 const payment = require("./Routes/paymentRoute");
+const user = require("./Routes/userRoute");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/", order);
 app.use("/", orderItem);
 app.use("/", menu);
 app.use("/", payment);
+app.use("/", user);
 
 
 app.listen(process.env.PORT, () => console.log("app is running"));
