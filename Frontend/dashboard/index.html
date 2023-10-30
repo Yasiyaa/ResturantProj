@@ -14,6 +14,7 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="../assets/css/aprycot.min.css?v=1.0.0">
+    <script src="vue.js"></script>
 </head>
 
 <body class="  " style="background:url(../assets/images/dashboard.png);    background-attachment: fixed;
@@ -59,7 +60,7 @@
                             <span class="mini-icon">-</span>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item sub-nav">
                         <a class="nav-link " href="../dashboard/icons/dual-tone.html">
 
@@ -1968,214 +1969,42 @@
                             </div>
                         </div>
                         <div class="card-body p-0 dish-card-vertical">
-                            <div class="swiper swiper-container d-slider3">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="card card-white dish-card2 index">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/17.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/17.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
-
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Grilled salmon
-                                                        </h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">250 Calories</p>
-                                                        <p>4 persons</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"><span id="">2500</span>
-                                                                LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <div  id="itemListComponent">
+                                <div class="card card-white dish-card2 index" v-for="item in itemList">
+                                    <div class="card-body ">
+                                        <div class="d-flex profile-img1">
+                                            <div class="profile-img31">
+                                                <img src="../assets/images/layouts/17.png"
+                                                    class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
+                                                    alt="profile-image">
+                                                <img src="../assets/images/layouts/17.png"
+                                                    class="img-fluid rounded-pill avatar-130 " alt="profile-image">
                                             </div>
-                                        </div>
-                                        <div class="card card-white dish-card2 index">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/19.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/19.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
+                                            <div>
 
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Chinese dumplings
-                                                        </h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">120 Calories</p>
-                                                        <p>1 Person</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"> <span id="">1500
-                                                                </span>LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
+                                                <h6 class="mb-1 mt-3 heading-title fw-bolder">{{item.name}}
+                                                </h6>
+                                                <p class="mt-2 mb-0 pb-4 iq-calories">250 Calories</p>
+                                                <p>{{item.persons}} persons</p>
+                                                <div class="d-flex mt-2">
+                                                    <span class="text-primary me-4"><span id="">{{item.price}}</span>
+                                                        LKR</span>
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="24" height="24" rx="12" fill="#EA6A12" />
+                                                        <rect x="11.168" y="7" width="1.66667" height="10" rx="0.833333"
+                                                            fill="white" />
+                                                        <rect x="7" y="12.834" width="1.66666" height="10" rx="0.833332"
+                                                            transform="rotate(-90 7 12.834)" fill="white" />
+                                                    </svg>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="card card-white dish-card2 index">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/14.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/14.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
-
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Herbal Salad</h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">60 Calories</p>
-                                                        <p>1 person</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"><span>500</span> LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-white dish-card2 ">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/20.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/20.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
-
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Chocolate Miracle
-                                                        </h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">200 Calories</p>
-                                                        <p>1 person</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"> <span>800 </span>LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="card card-white dish-card2 index">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/18.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/18.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
-
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Black pudding</h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">130 Calories</p>
-                                                        <p>1 persons</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"><span>1200</span> LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-white dish-card2 index">
-                                            <div class="card-body ">
-                                                <div class="d-flex profile-img1">
-                                                    <div class="profile-img31">
-                                                        <img src="../assets/images/layouts/21.png"
-                                                            class="img-fluid rounded-pill avatar-130 blur-shadow position-start"
-                                                            alt="profile-image">
-                                                        <img src="../assets/images/layouts/21.png"
-                                                            class="img-fluid rounded-pill avatar-130 "
-                                                            alt="profile-image">
-                                                    </div>
-                                                    <div>
-
-                                                        <h6 class="mb-1 mt-3 heading-title fw-bolder">Vege salad</h6>
-                                                        <p class="mt-2 mb-0 pb-4 iq-calories">60 Calories</p>
-                                                        <p>1 persons</p>
-                                                        <div class="d-flex mt-2">
-                                                            <span class="text-primary me-4"><span>480</span> LKR</span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <rect width="24" height="24" rx="12" fill="#EA6A12" />
-                                                                <rect x="11.168" y="7" width="1.66667" height="10"
-                                                                    rx="0.833333" fill="white" />
-                                                                <rect x="7" y="12.834" width="1.66666" height="10"
-                                                                    rx="0.833332" transform="rotate(-90 7 12.834)"
-                                                                    fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
+                           
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -2406,6 +2235,8 @@
 
     <!-- moment JavaScript -->
     <script src="../assets/vendor/moment.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
