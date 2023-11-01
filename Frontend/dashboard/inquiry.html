@@ -14,6 +14,7 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="../assets/css/aprycot.min.css?v=1.0.0">
+    <script src="vue.js"></script>
 </head>
 
 <body class="  " style="background:url(../assets/images/dashboard.png);    background-attachment: fixed;
@@ -1859,12 +1860,12 @@
                 </div>
                 <div class="card-body">
                     <div class="new-user-info">
-                        <form>
+                        <form id="inquiryForm">
                             <div class="row">
 
                                 <div class="form-group col-md-6">
                                     <label class="form-label">Inquiry Type:</label>
-                                    <select name="type" class="selectpicker form-control" data-style="py-0">
+                                    <select name="type" class="selectpicker form-control" data-style="py-0" v-model ="type">
                                         <option>Service</option>
                                         <option>Dining</option>
                                     </select>
@@ -1872,14 +1873,14 @@
                                 <div class="form-group col-md-12">
                                     <label class="form-label" for="fname">Inquiry:</label>
                                     <textarea type="text" class="form-control" id="inquiry" rows="5"
-                                        placeholder="Type your comment here..."></textarea>
+                                        placeholder="Type your comment here..." v-model ="inquiry"></textarea>
                                 </div>
 
 
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Add new Inquiry</button>
+                            <button type="button" class="btn btn-primary" v-on:click="submitQuiry">Add new Inquiry</button>
                         </form>
                     </div>
                 </div>
@@ -1911,6 +1912,9 @@
 
     <!-- moment JavaScript -->
     <script src="../assets/vendor/moment.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="inquiry.js"></script>
+  
 </body>
 
 </html>
