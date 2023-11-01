@@ -4,10 +4,10 @@ const userService = require("../Services/userService");
 
 // user authenticate
 router.route("/user/authenticate").post(function (req, res) {
-  const { username, password, type } = req.body;
+  const { username, password } = req.body;
   const uService = userService.getUserInstance();
 
-  const result = uService.authenticate(username, password, type);
+  const result = uService.authenticate(username, password);
 
   result.then((data) => res.send(data)).catch((err) => console.log(err));
 });

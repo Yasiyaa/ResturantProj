@@ -14,6 +14,7 @@
 
   <!-- Custom Css -->
   <link rel="stylesheet" href="../assets/css/aprycot.min.css?v=1.0.0" />
+
   <script src="vue.js"></script>
 </head>
 
@@ -21,7 +22,7 @@
       background: url(../assets/images/dashboard.png);
       background-attachment: fixed;
       background-size: cover;
-    ">
+    " >
   <div class="position-relative">
     <div class="user-img1">
       <svg width="1857" viewBox="0 0 1857 327" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,33 +55,27 @@
         <!-- Sidebar Menu Start -->
         <ul class="navbar-nav iq-main-menu">
           <li class="nav-item static-item">
-            <a class="nav-link static-item disabled" href="#" tabindex="-1">
-              <span class="default-icon">Home</span>
-              <span class="mini-icon">-</span>
-            </a>
+              <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                  <span class="default-icon">Home</span>
+                  <span class="mini-icon">-</span>
+              </a>
           </li>
 
-        
+
+
           <li class="nav-item sub-nav">
-            <a class="nav-link " href="./orderTracking.html">
+              <a class="nav-link " href="./checkReservation.html">
 
-                <span class="item-name">Order Tracking</span>
+                  <span class="item-name">Manage tables</span>
 
-            </a>
-        </li>
+              </a>
+          </li>
 
-        <li class="nav-item sub-nav">
-            <a class="nav-link " href="./respondToInquiries.html">
 
-                <span class="item-name">Respond to Inquiries</span>
 
-            </a>
-        </li>
-         
 
-     
-        </ul>
-        <!-- Sidebar Menu End -->
+      </ul>
+      <!-- Sidebar Menu End -->
       </div>
     </div>
     <div class="sidebar-footer"></div>
@@ -1542,48 +1537,54 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <div class="header-title">
-            <h4 class="card-title">Respond to inquiry</h4>
+            <h4 class="card-title">Reservation Management</h4>
           </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table id="respondToinquiries" class="table table-striped" role="grid" data-toggle="data-table">
+            <table id="checkreservation" class="table table-striped" role="grid" data-toggle="data-table">
               <thead>
                 <tr class="ligth">
 
+                  <th>Reservation ID</th>
                   <th>Customer ID</th>
-                  <th>Type</th>
-                  <th>Inquiry</th>
-                  <th>Status</th>
+                  <th>Table Number</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>No of people</th>
                   <th style="min-width: 100px">Action</th>
-
                 </tr>
               </thead>
               <tbody>
 
-                <tr v-for="item in inquiryData">
-
+                <tr v-for="item in tableData">
+                  <td>{{item.reservationId}}</td>
                   <td>{{item.cusID}}</td>
-                  <td>{{item.type}}</td>
-                  <td>{{item.inquiry}}</td>
-                  <td> <span class="badge bg-soft-primary">{{item.status}}</span></td>
-
+                  <td ><span class="badge bg-soft-primary">{{item.tableNo}}</span></td>
+                  <td>{{item.date}}</td>
+                  <td>{{item.time}}</td>
+                  <td>{{item.no_of_people}}</td>
+                
                   <td>
                     <div class="flex align-items-center list-user-action">
-
-
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M9.87651 15.2063C6.03251 15.2063 2.74951 15.7873 2.74951 18.1153C2.74951 20.4433 6.01251 21.0453 9.87651 21.0453C13.7215 21.0453 17.0035 20.4633 17.0035 18.1363C17.0035 15.8093 13.7415 15.2063 9.87651 15.2063Z"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M9.8766 11.886C12.3996 11.886 14.4446 9.841 14.4446 7.318C14.4446 4.795 12.3996 2.75 9.8766 2.75C7.3546 2.75 5.3096 4.795 5.3096 7.318C5.3006 9.832 7.3306 11.877 9.8456 11.886H9.8766Z"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M19.2036 8.66919V12.6792" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                      <path d="M21.2497 10.6741H17.1597" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                      </svg>
-                      </span>
+                      <a class="btn btn-sm btn-icon btn-success" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Add" href="#">
+                        <span class="btn-inner">
+                          <svg width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M9.87651 15.2063C6.03251 15.2063 2.74951 15.7873 2.74951 18.1153C2.74951 20.4433 6.01251 21.0453 9.87651 21.0453C13.7215 21.0453 17.0035 20.4633 17.0035 18.1363C17.0035 15.8093 13.7415 15.2063 9.87651 15.2063Z"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M9.8766 11.886C12.3996 11.886 14.4446 9.841 14.4446 7.318C14.4446 4.795 12.3996 2.75 9.8766 2.75C7.3546 2.75 5.3096 4.795 5.3096 7.318C5.3006 9.832 7.3306 11.877 9.8456 11.886H9.8766Z"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M19.2036 8.66919V12.6792" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M21.2497 10.6741H17.1597" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </span>
                       </a>
                       <a class="btn btn-sm btn-icon btn-warning" data-toggle="tooltip" data-placement="top" title=""
                         data-original-title="Edit" href="#">
@@ -1655,8 +1656,9 @@
   <!-- moment JavaScript -->
   <script src="../assets/vendor/moment.min.js"></script>
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="respondToInquiries.js"></script>
+  
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="ManageReservations.js"></script>
 </body>
 
 </html>

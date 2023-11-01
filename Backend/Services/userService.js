@@ -7,13 +7,19 @@ class User {
   }
 
   // authenticate user
-  async authenticate(username, password, type) {
+  async authenticate(username, password) {
     try {
       const response = await new Promise((resolve, reject) => {
-        const query =
-          "SELECT * FROM users WHERE username = ? and password = ? and type = ?;";
+        let query;
+        if (username == "admin") {
+          query =
+            "SELECT * FROM users WHERE username = ? and password = ? and type = 'admin';";
+        } else {
+          query =
+            "SELECT * FROM users WHERE username = ? and password = ? and type = 'staff';";
+        }
 
-        connection.query(query, [username, password, type], (err, results) => {
+        connection.query(query, [username, password], (err, results) => {
           if (err) reject(new Error(err.message));
           resolve(results);
         });

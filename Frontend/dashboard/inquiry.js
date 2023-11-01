@@ -28,7 +28,7 @@ var inquiry = new Vue({
         })
         .catch((err) => {
           console.log(err);
-          alert("Incorrect email or password");
+          alert("error occured");
         });
     },
   },

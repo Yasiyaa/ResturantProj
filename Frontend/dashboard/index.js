@@ -3,10 +3,14 @@ var itemList = new Vue({
   data: {
     itemList: [],
     cart:[],
-    cartTotal:0
+    cartTotal:0,
+    currentDate: new Date(),
+    customerID:''
   },
   mounted() {
+    this.customerID = localStorage.setItem("customerID", window.location.href.split("=")[1]);
     this.getFoodItems();
+
   },
   updated() {},
   methods: {
@@ -31,6 +35,9 @@ var itemList = new Vue({
         this.cartTotal = this.cartTotal - cartItem.unitprice;
     },
     checkOut: function(){
+      window.location.href = "./payment.html";
+
+
         
     }
   },
