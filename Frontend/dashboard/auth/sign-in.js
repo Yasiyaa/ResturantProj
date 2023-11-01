@@ -29,7 +29,7 @@ var login = new Vue({
             .post("http://localhost:5000/customer/authenticate", credentials)
             .then((res) => {
               if (res.status == 200) {
-                debugger
+           
                 window.location.href = "../index.html?customerID="+res.data[0].customerID;
               }
             })

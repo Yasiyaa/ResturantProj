@@ -2,6 +2,7 @@ var checkReservation = new Vue({
   el: "#checkreservation",
   data: {
     tableData: [],
+    resid:''
   },
   mounted() {
     this.getReservationData();
@@ -22,6 +23,22 @@ var checkReservation = new Vue({
           alert("Incorrect email or password");
         });
     },
+
+    deleteReservation: function(id){
+      
+      axios
+        .delete("http://localhost:5000/reservations/"+id)
+        .then((res) => {
+          if (res.status == 200) {
+            
+            alert(id)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Incorrect email or password");
+        });
+    }
   },
   beforeMount() {},
 });

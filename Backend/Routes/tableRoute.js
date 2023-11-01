@@ -27,6 +27,7 @@ router
           .status(500)
           .json({ error: "An error occurred while inserting the table." });
       });
-  });
+  })
+
 
 module.exports = router;

@@ -58,4 +58,21 @@ router.route("/reservation").put(function (req, res) {
     });
 });
 
+router.route("/reservations/:id").delete(function (req, res) {
+
+  const {id} = req.params;
+  const TRservice = tableReservationService.getTableReservationInstance();
+
+  const result = TRservice.deleteReservationByID(id);
+  result
+    .then((data) => res.json({ data: data }))
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ error: "An error occurred while the operation." });
+    });
+
+});
+
 module.exports = router;

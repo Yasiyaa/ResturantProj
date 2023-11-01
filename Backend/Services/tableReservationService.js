@@ -27,7 +27,7 @@ class tableReservation {
   async insertNewReservation(name, date, time, noOfPeople, email) {
     try {
       //validate booking tables with available tables and seating capacity
-      let  availability = await new Promise((resolve, reject) => {
+      let availability = await new Promise((resolve, reject) => {
         const query =
           "SELECT * FROM `table_detail` where seatingCapacity = ? AND booked = false LIMIT 1;";
 
@@ -118,6 +118,31 @@ class tableReservation {
       } else {
         return null;
       }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  //delete reservation
+  async deleteReservationByID(reservationId) {
+    try {
+      console.log(reservationId);
+      reservationId = parseInt(reservationId);
+
+      const response = await new Promise((resolve, reject) => {
+        const query = "DELETE FROM `table_reservation` WHERE reservationId = ? ";
+
+        connection.query(query, [reservationId], (err, result) => {
+          if (err) {
+            reject(new Error(err.message));
+          } else {
+            resolve(result.affectedRows);
+          }
+        });
+      });
+
+      return response === 1;
     } catch (error) {
       console.log(error);
       return false;
