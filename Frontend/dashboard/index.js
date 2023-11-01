@@ -1,35 +1,39 @@
 var itemList = new Vue({
   el: "#itemListComponent",
   data: {
-    itemList: [
-      { name: "Grilled salmon", calories: 250, persons: 1, price: 2500 },
-      { name: "Chinese dumplings", calories: 30, persons: 1, price: 870 },
-      { name: "Black pudding", calories: 500, persons: 1, price: 900 },
-      { name: "Fried rice", calories: 1500, persons: 2, price: 3850 },
-    ],
-    customerID: "",
+    itemList: [],
+    cart:[],
+    cartTotal:0
   },
   mounted() {
-    let currentUrl = window.location.href;
-    this.customerID = currentUrl.split("=")[1];
-    localStorage.setItem("customerID", this.customerID);
+    this.getFoodItems();
   },
   updated() {},
   methods: {
-    authenticate: function () {
-      let data = {};
-
+    getFoodItems: function () {
       axios
-        .post("http://localhost:5000/inquiry", data)
+        .get("http://localhost:5000/menu")
         .then((res) => {
           if (res.status == 200) {
-            window.location.href = "./index.html";
+            this.itemList = res.data;
           }
         })
         .catch((err) => {
           console.log(err);
-          alert("Incorrect email or password");
         });
     },
+    addToCart: function(item){
+        this.cart.push(item);
+        this.cartTotal = this.cartTotal + item.unitprice;
+    },
+    removeItem: function(cartItem){
+        this.cart.splice(this.cart.indexOf(cartItem),1);
+        this.cartTotal = this.cartTotal - cartItem.unitprice;
+    },
+    checkOut: function(){
+        
+    }
   },
 });
+
+  
