@@ -19,6 +19,12 @@ router
     const { cusid, date, total, ispaid, orderType, orderStatus } = req.body;
     const oService = orderService.getOrderInstance();
 
+    // food_order table
+    
+    // order_items table
+
+    // payment insertion
+
     const result = oService.insertNewOrder(
       cusid,
       date,
