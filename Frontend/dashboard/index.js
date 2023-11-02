@@ -38,21 +38,21 @@ var itemList = new Vue({
       this.cartTotal = this.cartTotal - cartItem.unitprice;
     },
     checkOut: function () {
-      window.location.href = "./payment.html";
-
+      
       let foodOrder = {
         date: new Date(),
         customerID: localStorage.getItem("customerID"),
         total: this.cartTotal,
-        isPaid: false,
+        isPaid: "true",
         orderType: this.orderType,
         orderStatus: "pending"
       };
-
+      
       let orderItems = this.cart;
 
-      localStorage.setItem("foodOrder",foodOrder);
-      localStorage.setItem("orderItems",orderItems);
+      localStorage.setItem("foodOrder",JSON.stringify(foodOrder));
+      localStorage.setItem("orderItems",JSON.stringify(orderItems));
+      window.location.href = "./payment.html";
     },
   },
 });
