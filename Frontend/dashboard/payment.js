@@ -25,7 +25,10 @@ var payment = new Vue({
         .post("http://localhost:5000/order",orderDetails)
         .then((res) => {
           if (res.status == 200) {
-            alert("Order placed successfull")
+            alert("Order placed successfull");
+      window.location.href = "./index.html";
+
+            
 
           }
         })

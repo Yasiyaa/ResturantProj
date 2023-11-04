@@ -42,8 +42,8 @@ router
         const payService = paymentService.getPaymentInstance();
         payService.insertNewPayment(
           foodOrderObj.customerID,
-          data.insertId,
-          paymentObj.amount,
+          data.OrderID,
+          data.total,
           paymentObj.date
         );
         res.send("Order placed!");
