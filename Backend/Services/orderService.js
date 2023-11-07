@@ -27,6 +27,7 @@ class Order {
   // insert new order
   async insertNewOrder(cusid, date, total, ispaid, orderType, orderStatus) {
     try {
+      console.log(cusid);
       const insertId = await new Promise((resolve, reject) => {
         const query =
           "INSERT INTO `food_order`( `cusID`, `date`, `total`, `isPaid`, `orderType`, `orderStatus`) VALUES (?,?,?,?,?,?)";
@@ -39,6 +40,7 @@ class Order {
               reject(new Error(err.message));
             } else {
               resolve(result.insertId);
+              
             }
           }
         );
@@ -73,11 +75,11 @@ class Order {
         });
       });
 
-      if( response === 1){
-        return{
-            orderID: id,
-            orderStatus :orderStatus
-        }
+      if (response === 1) {
+        return {
+          orderID: id,
+          orderStatus: orderStatus,
+        };
       }
     } catch (error) {
       console.log(error);

@@ -1,31 +1,41 @@
 var payment = new Vue({
-  el: "#payment",
+  el: "#paymentComponent",
   data: {
-    cusid:"",
-   
+    cusid: "",
   },
-  mounted() {},
-  updated() {
-    this.cusid = localStorage.getItem("customerID");
+  mounted() {
   },
+  updated() {},
   methods: {
-    authenticate: function () {
+   
+    payNow: function () {
+      let orderItems = localStorage.getItem("orderItems");
+      let foodOrder = localStorage.getItem("foodOrder");
+      let paymentData = {
+        amount: foodOrder.total,
+        date: new Date()
+      };
+      let orderDetails = {
+        orderItems,
+        foodOrder,
+        paymentData
+      }
+      
       axios
-        .post("http://localhost:5000")
+        .post("http://localhost:5000/order",orderDetails)
         .then((res) => {
           if (res.status == 200) {
+            alert("Order placed successfull");
+      window.location.href = "./index.html";
+
+            
+
           }
         })
         .catch((err) => {
           console.log(err);
           alert("Incorrect email or password");
         });
-    },
-
-
-    placeOrder: function(){
-
-
     },
   },
 });
